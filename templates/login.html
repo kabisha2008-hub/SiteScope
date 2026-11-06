@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block title %}Log in — SiteScope{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-side reveal">
+    <div class="eyebrow"><span class="live-dot"></span> GOOD TO HAVE YOU BACK</div>
+    <h1>Your website's<br>next chapter<br><span class="gradient-text">starts here.</span></h1>
+    <p>Sign in to explore your insights, revisit your reports and keep making progress.</p>
+    <div class="auth-decoration"><span>✳</span><span>↗</span><span>✦</span></div>
+  </div>
+  <div class="auth-card reveal">
+    <a class="brand" href="{{ url_for('index') }}"><span class="brand-icon">S</span> Site<span>Scope</span><span class="brand-dot">.</span></a>
+    <h2>Welcome back</h2><p class="muted">Enter your details to continue.</p>
+    <form method="POST" class="form-stack">
+      <label for="email">Email address</label>
+      <input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+      <button class="button button-full" type="submit">Log in to SiteScope <span>↗</span></button>
+    </form>
+    <p class="auth-switch">New to SiteScope? <a href="{{ url_for('register') }}">Create an account</a></p>
+    <div class="auth-secure">✳ Your reports are saved to your account.</div>
+  </div>
+</section>
+{% endblock %}

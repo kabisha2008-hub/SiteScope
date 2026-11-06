@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SiteScope | Smart SEO Analyzer{% endblock %}</title>
+
+    <meta name="description"
+          content="{% block meta_description %}Analyze your website SEO, discover technical issues, and improve search visibility with SiteScope.{% endblock %}">
+
+    <meta name="theme-color" content="#f8fafc">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="page-background" aria-hidden="true">
+        <div class="background-orb orb-purple"></div>
+        <div class="background-orb orb-blue"></div>
+        <div class="background-orb orb-pink"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="site-header" id="siteHeader">
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="{{ url_for('index') }}"
+               class="brand"
+               aria-label="SiteScope home">
+
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24"
+                         width="25"
+                         height="25"
+                         fill="none"
+                         aria-hidden="true">
+                        <circle cx="10.8" cy="10.8" r="6.8"
+                                stroke="currentColor"
+                                stroke-width="2.2"/>
+                        <path d="M16 16L21 21"
+                              stroke="currentColor"
+                              stroke-width="2.5"
+                              stroke-linecap="round"/>
+                        <path d="M7.5 11.5L9.5 9.5L11.2 11.2L14.2 8.2"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </span>
+
+                <span class="brand-name">Site<span>Scope</span></span>
+            </a>
+
+            <button class="menu-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="navLinks"
+                    data-menu-toggle>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks" data-nav-links>
+
+                <a href="{{ url_for('index') }}" class="nav-link">
+                    Home
+                </a>
+
+                <a href="{{ url_for('index') }}#about" class="nav-link">
+                    About
+                </a>
+
+                <a href="{{ url_for('index') }}#features" class="nav-link">
+                    Features
+                </a>
+
+                <a href="{{ url_for('index') }}#how-it-works" class="nav-link">
+                    How It Works
+                </a>
+
+                {% if session.get('user_id') %}
+
+                    <a href="{{ url_for('dashboard') }}" class="nav-link">
+                        Dashboard
+                    </a>
+
+                    <a href="{{ url_for('dashboard') }}" class="nav-button">
+                        Analyze Website
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                {% else %}
+
+                    <a href="{{ url_for('login') }}" class="nav-link">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('register') }}" class="nav-button">
+                        Get Started
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+        <div class="container flash-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}"
+                             role="alert">
+                            <span>{{ message }}</span>
+
+                            <button type="button"
+                                    class="flash-close"
+                                    aria-label="Dismiss message"
+                                    onclick="this.parentElement.remove()">
+                                &times;
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+
+            <a href="{{ url_for('index') }}" class="brand footer-brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24"
+                         width="22"
+                         height="22"
+                         fill="none"
+                         aria-hidden="true">
+                        <circle cx="10.8" cy="10.8" r="6.8"
+                                stroke="currentColor"
+                                stroke-width="2.2"/>
+                        <path d="M16 16L21 21"
+                              stroke="currentColor"
+                              stroke-width="2.5"
+                              stroke-linecap="round"/>
+                    </svg>
+                </span>
+
+                <span class="brand-name">Site<span>Scope</span></span>
+            </a>
+
+            <p class="footer-description">
+                Understand your website. Improve your SEO. Grow your visibility.
+            </p>
+
+            <div class="footer-links">
+                <a href="{{ url_for('index') }}#about">About</a>
+                <a href="{{ url_for('index') }}#features">Features</a>
+                <a href="{{ url_for('index') }}#faq">FAQ</a>
+            </div>
+
+            <p class="footer-copyright">
+                &copy; <span data-current-year>2026</span> SiteScope.
+                Built for a better web.
+            </p>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

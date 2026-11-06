@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% block title %}Dashboard — SiteScope{% endblock %}
+{% block content %}
+<section class="dashboard">
+    <div class="dashboard-heading">
+        <span class="eyebrow">YOUR WORKSPACE</span>
+        <h1>Welcome back, <span class="gradient-text">{{ user.name }}</span></h1>
+        <p>Run an audit and see what your website can improve.</p>
+    </div>
+
+    <section class="analyzer-card">
+        <div class="analyzer-heading"><span class="feature-icon">⌕</span><div><h2>Analyze a website</h2><p>Crawl your website to inspect SEO, internal links, broken links and page health.</p></div></div>
+        <form method="POST" action="{{ url_for('analyze') }}" class="analyzer-form" data-scan-form>
+            <input type="url" name="url" placeholder="https://example.com" aria-label="Website URL" required>
+            <label class="crawl-limit-label" for="max_pages">Pages to crawl</label>
+            <select id="max_pages" name="max_pages" aria-label="Maximum pages to crawl">
+                <option value="10">10 pages</option><option value="30" selected>30 pages</option>
+                <option value="50">50 pages</option><option value="100">100 pages</option>
+            </select>
+            <button class="button" type="submit">Run SEO audit <span>↗</span></button>
+        </form>
+        <p class="form-note">Crawls public pages on the same website only. Choose a page limit to control scan time.</p>
+    </section>
+
+    <div class="stats-grid">
+        <article class="stat-card"><span class="stat-label">TOTAL REPORTS</span><strong>{{ total }}</strong><p>Saved audits</p></article>
+        <article class="stat-card"><span class="stat-label">AVERAGE SCORE</span><strong>{{ average_score }}<small>/100</small></strong><p>Across saved reports</p></article>
+        <article class="stat-card"><span class="stat-label">LATEST ACTIVITY</span><strong>{{ reports|length }}</strong><p>Reports in your history</p></article>
+    </div>
+
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">YOUR HISTORY</span><h2>Saved reports</h2></div></div>
+        {% if reports %}
+            <div class="report-list">
+                {% for item in reports %}
+                    <article class="report-row">
+                        <div class="report-site"><span class="report-icon">↗</span><div><strong>{{ item.url }}</strong><p>{{ item.created_at }}</p></div></div>
+                        <div class="report-score"><strong>{{ item.score }}</strong><span>/ 100</span></div>
+                        <a class="button button-small button-outline" href="{{ url_for('view_report', report_id=item.id) }}">View report →</a>
+                        <form method="POST" action="{{ url_for('delete_report', report_id=item.id) }}" data-delete-form>
+                            <button class="delete-button" type="submit" aria-label="Delete report">Delete</button>
+                        </form>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state"><span class="empty-icon">◈</span><h3>Your reports will appear here</h3><p>Run your first website audit to get started.</p></div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

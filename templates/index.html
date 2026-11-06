@@ -1,0 +1,327 @@
+
+{% extends "base.html" %}
+{% block title %}SiteScope — Smarter Website SEO{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <span class="eyebrow"><span class="status-dot"></span> YOUR WEBSITE, UNDER THE LENS</span>
+        <h1>Make your website<br>work <span class="gradient-text">smarter.</span></h1>
+        <p class="hero-description">Discover SEO issues, understand what needs fixing, and make your website easier for search engines to understand.</p>
+        <div class="hero-actions">
+            <a class="button" href="{{ url_for('register') }}">Start your free audit <span>↗</span></a>
+            <a class="text-link" href="{{ url_for('login') }}">Already have an account?</a>
+        </div>
+        <div class="trust-line"><span>✓</span> Clear checks <span>✓</span> Actionable suggestions</div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="visual-glow"></div>
+        <div class="preview-card">
+            <div class="preview-top">
+                <div><span class="mini-label">WEBSITE OVERVIEW</span><h3>SEO Health</h3></div>
+                <span class="live-pill">● Preview</span>
+            </div>
+            <div class="score-display">
+                <div class="score-circle"><span>SEO</span><strong>100</strong><small>POINT SCALE</small></div>
+                <div class="score-notes"><span class="note-dot"></span><div><strong>Technical checks</strong><p>Review essential SEO signals</p></div></div>
+            </div>
+            <div class="preview-divider"></div>
+            <div class="preview-item"><span>Page title</span><span class="sample-status">Check</span></div>
+            <div class="preview-item"><span>Meta description</span><span class="sample-status">Check</span></div>
+            <div class="preview-item"><span>Mobile viewport</span><span class="sample-status">Check</span></div>
+            <p class="preview-caption">Illustrative preview — not a real audit result.</p>
+        </div>
+        <div class="floating-chip chip-one">✦ Actionable insights</div>
+        <div class="floating-chip chip-two">↗ SEO overview</div>
+    </div>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <span class="eyebrow">BUILT FOR CLARITY</span>
+        <h2>Everything starts with <span class="gradient-text">understanding.</span></h2>
+        <p>Simple tools to help you identify opportunities for your website.</p>
+    </div>
+    <div class="feature-grid">
+        <article class="feature-card">
+            <span class="feature-icon">⌕</span>
+            <h3>Website analysis</h3>
+            <p>Review page titles, descriptions, headings, image alt text and other essential SEO checks.</p>
+        </article>
+        <article class="feature-card">
+            <span class="feature-icon">◈</span>
+            <h3>Clear recommendations</h3>
+            <p>Understand which checks need attention and what you can improve next.</p>
+        </article>
+        <article class="feature-card">
+            <span class="feature-icon">▤</span>
+            <h3>Saved reports</h3>
+            <p>Keep your audit history in one place and revisit your results when needed.</p>
+        </article>
+    </div>
+</section>
+
+<section class="bottom-cta">
+    <div><span class="eyebrow">READY WHEN YOU ARE</span><h2>Take a closer look at your website.</h2></div>
+    <a class="button" href="{{ url_for('register') }}">Get started <span>↗</span></a>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+    <div class="about-visual reveal">
+        <div class="about-orb orb-purple"></div>
+        <div class="about-orb orb-blue"></div>
+
+        <div class="about-glass-card">
+            <div class="about-icon">✦</div>
+            <span class="eyebrow">THE SITESCOPE APPROACH</span>
+            <h2>Clarity over complexity.</h2>
+            <p>Website optimization should feel understandable, not overwhelming.</p>
+
+            <div class="about-mini-stats">
+                <div><strong>01</strong><span>Analyze</span></div>
+                <div><strong>02</strong><span>Understand</span></div>
+                <div><strong>03</strong><span>Improve</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-copy reveal">
+        <span class="eyebrow">ABOUT SITESCOPE</span>
+        <h2>A clearer way to understand your <span class="gradient-text">website.</span></h2>
+        <p>SiteScope is a website SEO analysis tool designed to help website owners and developers identify common optimization issues.</p>
+        <p>From page titles and meta descriptions to headings, image accessibility and indexing directives, SiteScope organizes important checks into an easy-to-understand report.</p>
+        <a class="button" href="{{ url_for('register') }}">Explore SiteScope <span>↗</span></a>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="content-section" id="how-it-works">
+    <div class="section-heading reveal">
+        <span class="eyebrow">A SIMPLE WORKFLOW</span>
+        <h2>From URL to <span class="gradient-text">action plan.</span></h2>
+        <p>Three simple steps to understand your website's SEO basics.</p>
+    </div>
+
+    <div class="steps-grid">
+        <article class="step-card reveal">
+            <span class="step-number">01</span>
+            <div class="step-icon">↗</div>
+            <h3>Enter your URL</h3>
+            <p>Provide the public website address you want to inspect.</p>
+        </article>
+
+        <article class="step-card reveal">
+            <span class="step-number">02</span>
+            <div class="step-icon">⌕</div>
+            <h3>Run an SEO audit</h3>
+            <p>Review page elements and technical signals checked by SiteScope.</p>
+        </article>
+
+        <article class="step-card reveal">
+            <span class="step-number">03</span>
+            <div class="step-icon">✧</div>
+            <h3>Plan improvements</h3>
+            <p>Use the report recommendations to decide what to fix first.</p>
+        </article>
+    </div>
+</section>
+
+<!-- WHAT YOU CAN CHECK -->
+<section class="content-section capabilities-section" id="capabilities">
+    <div class="section-heading reveal">
+        <span class="eyebrow">ESSENTIAL SEO SIGNALS</span>
+        <h2>The details that <span class="gradient-text">matter.</span></h2>
+        <p>Explore the types of on-page checks available in the current analyzer.</p>
+    </div>
+
+    <div class="capability-grid">
+        <article class="capability-card reveal">
+            <span>⌘</span>
+            <div><h3>Metadata</h3><p>Review title tags and meta descriptions for missing or unusual lengths.</p></div>
+        </article>
+
+        <article class="capability-card reveal">
+            <span>▤</span>
+            <div><h3>Heading structure</h3><p>Check whether the page has a clear primary H1 heading.</p></div>
+        </article>
+
+        <article class="capability-card reveal">
+            <span>◉</span>
+            <div><h3>Image accessibility</h3><p>Identify images that may need descriptive alternative text.</p></div>
+        </article>
+
+        <article class="capability-card reveal">
+            <span>◇</span>
+            <div><h3>Canonical URLs</h3><p>Check whether a canonical link element is present.</p></div>
+        </article>
+
+        <article class="capability-card reveal">
+            <span>▱</span>
+            <div><h3>Mobile readiness</h3><p>Check for a viewport meta tag used by responsive pages.</p></div>
+        </article>
+
+        <article class="capability-card reveal">
+            <span>◎</span>
+            <div><h3>Indexing directives</h3><p>Inspect common robots directives that can affect indexability.</p></div>
+        </article>
+    </div>
+</section>
+
+<!-- WHO IT IS FOR -->
+<section class="audience-section reveal">
+    <div class="audience-copy">
+        <span class="eyebrow">MADE FOR BUILDERS</span>
+        <h2>Useful for every stage of your <span class="gradient-text">web journey.</span></h2>
+        <p>Whether you're learning web development, building client websites or maintaining your own online presence, SiteScope gives you a structured place to review basic SEO checks.</p>
+    </div>
+
+    <div class="audience-list">
+        <div><span>✓</span><p><strong>Students & learners</strong><br>Understand on-page SEO fundamentals.</p></div>
+        <div><span>✓</span><p><strong>Web developers</strong><br>Review common page-level issues.</p></div>
+        <div><span>✓</span><p><strong>Website owners</strong><br>Keep audit results organized in one place.</p></div>
+    </div>
+</section>
+
+<!-- FAQ -->
+
+<section class="faq-section" id="faq">
+    <div class="container">
+
+        <div class="section-heading reveal">
+            <span class="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+            <h2>Everything you need to know about SiteScope</h2>
+            <p>
+                Learn how website analysis works, understand your SEO results,
+                and discover practical ways to improve your website.
+            </p>
+        </div>
+
+        <div class="faq-list">
+
+            <details class="faq-item reveal">
+                <summary>What is SiteScope, and how does it help my website?</summary>
+                <div class="faq-answer">
+                    <p>
+                        SiteScope is a website SEO analysis tool designed to help
+                        you understand how well your website follows important
+                        search engine optimization practices. Enter your website
+                        URL to review the checks supported by the analyzer, identify
+                        possible issues, and understand which areas may need attention.
+                        Instead of manually checking every page element, you can use
+                        the generated report as a starting point for improving your
+                        website's technical setup, content structure, metadata, and
+                        overall search visibility. Results depend on the checks
+                        available in your current SiteScope implementation.
+                    </p>
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary>How do I analyze my website using SiteScope?</summary>
+                <div class="faq-answer">
+                    <p>
+                        First, create an account or sign in to access your dashboard.
+                        Enter the complete URL of the website you want to analyze,
+                        including its https:// prefix when applicable, and submit the
+                        form. SiteScope will run the checks implemented by the
+                        application and display the resulting score, findings, and
+                        recommendations. Review each finding carefully, prioritize
+                        the issues that matter most, and make the necessary changes
+                        to your website. You can then run another analysis to review
+                        the updated results. The exact report details depend on the
+                        checks supported by your analyzer.
+                    </p>
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary>What does my SEO score actually mean?</summary>
+                <div class="faq-answer">
+                    <p>
+                        Your SEO score is a summary of the checks performed by
+                        SiteScope; it should be treated as a diagnostic indicator,
+                        not a direct Google ranking or a guarantee of traffic.
+                        A higher score generally means that your website passed
+                        more of the checks included in the analyzer. A lower score
+                        can help you identify areas that may need improvement.
+                        Read the individual findings alongside the overall score,
+                        because two websites with similar scores can have very
+                        different problems. Search rankings also depend on factors
+                        such as content quality, relevance, competition, links,
+                        usability, and how search engines discover and index pages.
+                    </p>
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary>Can SiteScope guarantee that my website will rank first on Google?</summary>
+                <div class="faq-answer">
+                    <p>
+                        No SEO tool can honestly guarantee the first position on
+                        Google. Search rankings are determined by many factors,
+                        including how relevant and useful your content is, the
+                        competition for your target searches, technical accessibility,
+                        website reputation, and Google's ranking systems. SiteScope
+                        can help you identify issues covered by its analysis and
+                        guide your optimization work, but fixing those issues does
+                        not guarantee a particular ranking. For the best long-term
+                        results, combine technical improvements with useful content,
+                        a good user experience, and regular monitoring through tools
+                        such as Google Search Console.
+                    </p>
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary>Who can benefit from using SiteScope?</summary>
+                <div class="faq-answer">
+                    <p>
+                        SiteScope can be useful for website owners, students,
+                        developers, bloggers, freelancers, digital marketers, and
+                        small businesses who want a clearer understanding of basic
+                        website SEO. Beginners can use the findings as a learning
+                        guide, while developers can use them to spot possible
+                        technical or on-page improvements. Marketing teams can use
+                        reports as one part of their optimization workflow.
+                        However, the tool should complement—not replace—manual
+                        verification, accessibility testing, performance testing,
+                        analytics, and other specialized SEO tools when those
+                        checks are needed.
+                    </p>
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary>Can I review my previous SEO reports?</summary>
+                <div class="faq-answer">
+                    <p>
+                        If report history is enabled in your SiteScope account,
+                        you can visit your dashboard to review saved analyses and
+                        compare their findings. Previous reports can help you keep
+                        track of issues you have already addressed and identify
+                        areas that still need attention. For meaningful comparisons,
+                        analyze the same website using consistent settings where
+                        possible, and remember that results can change when the
+                        website content or analyzer checks change. Keep important
+                        reports available until you no longer need them, especially
+                        when they are being used to monitor ongoing SEO work.
+                    </p>
+                </div>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="animated-cta reveal">
+    <div class="cta-decoration cta-decoration-one"></div>
+    <div class="cta-decoration cta-decoration-two"></div>
+    <span class="eyebrow">YOUR NEXT STEP STARTS HERE</span>
+    <h2>Understand your website.<br><span>Improve with purpose.</span></h2>
+    <p>Start with the basics and turn SEO checks into a practical improvement plan.</p>
+    <a class="button cta-button" href="{{ url_for('register') }}">Start your first audit <span>↗</span></a>
+</section>
+
+{% endblock %}

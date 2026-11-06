@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% block title %}Create account — SiteScope{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+    <div class="auth-intro">
+        <span class="eyebrow">START WITH CLARITY</span>
+        <h1>Better websites<br>begin with <span class="gradient-text">insight.</span></h1>
+        <p>Create your account to analyze websites, save reports and track your SEO checks.</p>
+    </div>
+    <div class="auth-card">
+        <div class="auth-card-heading"><span class="brand-mark">S</span><h2>Create your account</h2><p>It only takes a moment to get started.</p></div>
+        <form method="POST" action="{{ url_for('register') }}" class="form-stack">
+            <label for="name">Full name</label>
+            <input id="name" type="text" name="name" placeholder="Your name" autocomplete="name" required>
+            <label for="email">Email address</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+            <button class="button button-full" type="submit">Create account <span>→</span></button>
+        </form>
+        <p class="auth-switch">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+    </div>
+</section>
+{% endblock %}

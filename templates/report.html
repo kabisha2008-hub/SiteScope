@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}SEO Report — SiteScope{% endblock %}
+{% block content %}
+<section class="dashboard report-page">
+    <a class="back-link" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+    <div class="dashboard-heading report-heading">
+        <span class="eyebrow">FULL WEBSITE SEO AUDIT</span>
+        <h1>Your website <span class="gradient-text">overview.</span></h1>
+        <p class="report-url">{{ report.url }}</p>
+        <span class="report-date">Created {{ report.created_at }}</span>
+    </div>
+
+    <section class="score-panel">
+        <div class="large-score"><strong>{{ report.score }}</strong><span>/100</span></div>
+        <div><span class="eyebrow">SITE SEO HEALTH</span>
+            <h2>{% if report.score >= 80 %}Strong foundation{% elif report.score >= 50 %}Room to improve{% else %}Needs attention{% endif %}</h2>
+            <p>This score summarizes SiteScope's checks. It is not a Google ranking prediction.</p>
+        </div>
+        <a class="button button-small" href="{{ url_for('export_report', report_id=report.id) }}">Export CSV ↓</a>
+    </section>
+
+    <section class="site-metrics">
+        <article class="site-metric"><span>CRAWLED PAGES</span><strong>{{ audit_data.get('pages_crawled', 0) }}</strong><small>of {{ audit_data.get('pages_limit', 0) }} max</small></article>
+        <article class="site-metric"><span>INTERNAL LINKS</span><strong>{{ audit_data.get('internal_links', 0) }}</strong><small>site navigation links</small></article>
+        <article class="site-metric"><span>EXTERNAL LINKS</span><strong>{{ audit_data.get('external_links', 0) }}</strong><small>outbound links</small></article>
+        <article class="site-metric"><span>BROKEN LINKS</span><strong>{{ audit_data.get('broken_links', [])|length }}</strong><small>confirmed in crawled pages</small></article>
+    </section>
+
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">SITE STRUCTURE</span><h2>Internal linking overview</h2></div></div>
+        <div class="audit-summary-grid">
+            <div class="audit-summary"><span>Orphan page candidates</span><strong>{{ audit_data.get('orphan_candidates', [])|length }}</strong></div>
+            <div class="audit-summary"><span>Duplicate page titles</span><strong>{{ audit_data.get('duplicate_titles', [])|length }}</strong></div>
+            <div class="audit-summary"><span>Pages missing descriptions</span><strong>{{ audit_data.get('missing_descriptions', 0) }}</strong></div>
+            <div class="audit-summary"><span>Thin content candidates</span><strong>{{ audit_data.get('thin_pages', [])|length }}</strong></div>
+            <div class="audit-summary"><span>Links without anchor text</span><strong>{{ audit_data.get('anchorless_links', 0) }}</strong></div>
+            <div class="audit-summary"><span>Pages with noindex</span><strong>{{ audit_data.get('noindex_pages', 0) }}</strong></div>
+        </div>
+        <p class="audit-note">{{ audit_data.get('note', 'Internal-link checks are based on the pages included in this crawl.') }}</p>
+    </section>
+
+    {% if audit_data.get('broken_links') %}
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">LINK HEALTH</span><h2>Broken internal links</h2></div></div>
+        <div class="audit-table-wrap"><table class="audit-table">
+            <thead><tr><th>Source page</th><th>Broken destination</th><th>Status</th></tr></thead>
+            <tbody>{% for link in audit_data.get('broken_links', []) %}
+                <tr><td>{{ link.source }}</td><td>{{ link.target }}</td><td>{{ link.status }}</td></tr>
+            {% endfor %}</tbody>
+        </table></div>
+    </section>
+    {% endif %}
+
+    {% if audit_data.get('orphan_candidates') %}
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">DISCOVERABILITY</span><h2>Orphan page candidates</h2></div></div>
+        <ul class="audit-url-list">{% for url in audit_data.get('orphan_candidates', []) %}<li>{{ url }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">CRAWLED URLS</span><h2>Page inventory</h2></div></div>
+        <div class="audit-table-wrap"><table class="audit-table">
+            <thead><tr><th>Page</th><th>HTTP</th><th>Words</th><th>Inbound</th><th>Internal</th><th>External</th><th>Images missing alt</th></tr></thead>
+            <tbody>{% for page in audit_data.get('page_rows', []) %}
+                <tr>
+                    <td><a href="{{ page.url }}" target="_blank" rel="noopener noreferrer">{{ page.url }}</a><small>{{ page.title or 'Missing title' }}</small></td>
+                    <td>{{ page.status }}</td><td>{{ page.word_count }}</td><td>{{ page.inbound_links }}</td>
+                    <td>{{ page.internal_links }}</td><td>{{ page.external_links }}</td><td>{{ page.missing_alt }}</td>
+                </tr>
+            {% endfor %}</tbody>
+        </table></div>
+    </section>
+
+    {% if audit_data.get('crawl_errors') %}
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">CRAWL NOTES</span><h2>Pages that could not be fetched</h2></div></div>
+        <ul class="audit-url-list">{% for error in audit_data.get('crawl_errors', []) %}<li><strong>{{ error.url }}</strong><small>{{ error.error }}</small></li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">AUDIT DETAILS</span><h2>SEO checks</h2></div></div>
+        <div class="check-list">
+            {% for item in results %}
+                <article class="check-row">
+                    <span class="check-symbol {% if item.passed %}check-good{% else %}check-warning{% endif %}">{% if item.passed %}✓{% else %}!{% endif %}</span>
+                    <div><h3>{{ item.name }}</h3><p>{{ item.detail }}</p></div>
+                    <span class="check-status {% if item.passed %}text-good{% else %}text-warning{% endif %}">{% if item.passed %}Passed{% else %}Review{% endif %}</span>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="reports-section">
+        <div class="section-row"><div><span class="eyebrow">NEXT STEPS</span><h2>Recommendations</h2></div></div>
+        {% if recommendations %}
+            <div class="recommendation-list">
+                {% for recommendation in recommendations %}
+                    <article class="recommendation-row"><span>✦</span><p>{{ recommendation }}</p></article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state"><h3>All checks passed</h3><p>No recommendations were generated for these checks.</p></div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
